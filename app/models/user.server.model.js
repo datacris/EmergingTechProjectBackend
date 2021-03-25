@@ -7,15 +7,24 @@ const Schema = mongoose.Schema;
 //
 // Define a new 'StudentSchema'
 var UserSchema = new Schema({
-	firstName: String,
-	lastName: String,
+	firstName: {
+		type: String,
+		required: true
+	},
+	lastName: {
+		type: String,
+		required: true
+	},
 	email: {
 		type: String,
+		unique: true,
+		required: true,
 		// Validate the email format
 		match: [/.+\@.+\..+/, "Please fill a valid email address"]
 	},
 	password: {
 		type: String,
+		required: true,
 		// Validate the 'password' value length
 		validate: [
 			(password) => password && password.length > 2,
