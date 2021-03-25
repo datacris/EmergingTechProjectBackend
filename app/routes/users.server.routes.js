@@ -9,6 +9,10 @@ module.exports = function (app) {
 
     app.post('/signIn', users.authenticate);
 
+    app.get('/read_cookie', users.isSignedIn);
+    app.get('/signOut', users.signout);
+    
+
     // app.route('/createStudent')
     //     .post(students.create);
 
