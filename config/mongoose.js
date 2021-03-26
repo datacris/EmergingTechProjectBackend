@@ -21,6 +21,8 @@ module.exports = function () {
   require('../app/models/user.server.model');
   //Load the 'VitalSign' model
   require('../app/models/vitalSign.server.model');
+  //Load the 'EmergencyAlert' model
+  require('../app/models/emergencyAlert.server.model');
 
   // Load the 'Student' model 
   // require('../app/models/student.server.model');
