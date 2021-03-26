@@ -11,6 +11,9 @@ module.exports = function (app) {
 
     app.get('/read_cookie', users.isSignedIn);
     app.get('/signOut', users.signout);
+
+    app.route('/patients')
+        .get(users.listPatients);
     
 
     // app.route('/createStudent')

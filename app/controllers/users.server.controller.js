@@ -55,9 +55,28 @@ exports.create = function (req, res, next) {
 };
 
 
-// ********************************************************
-//  Authenticates a user n
-// ********************************************************
+//********************************************************************* */
+// List all patients
+//********************************************************************* */
+exports.listPatients = function (req, res) {
+	console.log('***********************************************10')
+	User.find({userType: 'patient'})
+		.exec((err, patients) => {
+			if (err) {
+				return res.status(400).send({
+					message: getErrorMessage(err)
+				});
+			} else {
+				console.log('***********************************************1')
+				console.log(patients)
+				res.status(200).json(patients);
+			}
+		});
+};
+
+
+
+
 exports.authenticate = function (req, res, next) {
 
 
