@@ -7,9 +7,9 @@ var config = require('./config'),
 module.exports = function () {
   // Use Mongoose to connect to MongoDB
   const db = mongoose.connect(config.db, {
-  
+
     useUnifiedTopology: true,
-    useNewUrlParser: true, 
+    useNewUrlParser: true,
     useCreateIndex: true
   }).then(() => console.log('DB Connected!'))
     .catch(err => {
@@ -19,7 +19,8 @@ module.exports = function () {
 
   // Load the 'User' model 
   require('../app/models/user.server.model');
-
+  //Load the 'VitalSign' model
+  require('../app/models/vitalSign.server.model');
 
   // Load the 'Student' model 
   // require('../app/models/student.server.model');

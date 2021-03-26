@@ -59,22 +59,36 @@ exports.create = function (req, res, next) {
 // List all patients
 //********************************************************************* */
 exports.listPatients = function (req, res) {
-	console.log('***********************************************10')
-	User.find({userType: 'patient'})
+
+	User.find({ userType: 'patient' })
 		.exec((err, patients) => {
 			if (err) {
 				return res.status(400).send({
 					message: getErrorMessage(err)
 				});
 			} else {
-				console.log('***********************************************1')
 				console.log(patients)
 				res.status(200).json(patients);
 			}
 		});
 };
 
-
+//********************************************************************* */
+// 'userById' return the user by its Id
+//********************************************************************* */
+exports.userById = function (req, res) {
+	
+	User.findOne({
+		_id: req.params.userId
+	}, (err, user) => {
+		if (err) {
+			console.log(err.message)
+			return next(err.message);
+		} else {
+			res.status(200).json(user);
+		}
+	});
+};
 
 
 exports.authenticate = function (req, res, next) {
@@ -109,6 +123,7 @@ exports.authenticate = function (req, res, next) {
 				res.status(200).json({
 					status: "success",
 					message: "user found!!!",
+					userId: user._id,
 					userEmail: user.email,
 					userRole: user.userType,
 					data: {
@@ -172,11 +187,10 @@ exports.isSignedIn = (req, res) => {
 	// Finally, token is ok, return the username given in the token
 	res.status(200).send({
 		userEmail: payload.userEmail,
-		userId: payload.id,
+		userId: payload.userId,
 		userRole: payload.userRole
 	});
 }
-
 
 
 //isAuthenticated() method to check whether a user is currently authenticated

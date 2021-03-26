@@ -14,7 +14,10 @@ module.exports = function (app) {
 
     app.route('/patients')
         .get(users.listPatients);
-    
+
+    app.route('/user/:userId')
+        .get(users.userById);
+
 
     // app.route('/createStudent')
     //     .post(students.create);
