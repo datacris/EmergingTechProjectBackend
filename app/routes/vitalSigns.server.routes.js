@@ -2,7 +2,6 @@
 
 module.exports = function (app) {
 
-
     app.route('/vitalSignsBypatient/:userId')
         .get(vitalSigns.vitalSignsBypatient);
 

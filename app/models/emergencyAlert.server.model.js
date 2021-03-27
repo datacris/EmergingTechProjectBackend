@@ -13,6 +13,7 @@ const EmergencyAlertSchema = new Schema({
         default: '',
         trim: true
     },
+    // two states: created, responded
     alertState: {
         type: String, 
         default: 'created',
