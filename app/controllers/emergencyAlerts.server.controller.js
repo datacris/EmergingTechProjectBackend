@@ -21,7 +21,7 @@ exports.emergencyAlertsBypatient = function (req, res) {
     EmergencyAlert.find({ createdBy: req.params.userId })
         .populate('createdBy')
         .populate('answeredBy')
-        .sort({creationDate: -1})
+        .sort({ creationDate: -1 })
         .exec((err, emergencyAlerts) => {
             if (err) {
                 return res.status(400).send({
@@ -41,7 +41,23 @@ exports.emergencyAlertsList = function (req, res) {
     EmergencyAlert.find()
         .populate('createdBy')
         .populate('answeredBy')
-        .sort({creationDate: -1})
+        .sort({ creationDate: -1 })
+        .exec((err, emergencyAlerts) => {
+            if (err) {
+                return res.status(400).send({
+                    message: getErrorMessage(err)
+                });
+            } else {
+                res.status(200).json(emergencyAlerts);
+            }
+        });
+};
+
+//********************************************************************* */
+// gets the Unanswered Emergency alerts from all patients for Dashboard notification
+//********************************************************************* */
+exports.unansweredAlerts = function (req, res) {
+    EmergencyAlert.find({ alertState: 'created' })
         .exec((err, emergencyAlerts) => {
             if (err) {
                 return res.status(400).send({
@@ -97,12 +113,12 @@ exports.respondEmergencyAlert = function (req, res) {
 
     //Find the nurse by its Id
     User.findOne({
-		_id: req.body.answeredBy
-	}, (err, nurse) => {
-		if (err) {
-			console.log(err.message)
-			return next(err.message);
-		} else {
+        _id: req.body.answeredBy
+    }, (err, nurse) => {
+        if (err) {
+            console.log(err.message)
+            return next(err.message);
+        } else {
 
             EmergencyAlert.findOne({
                 _id: req.params.alertId
@@ -120,14 +136,14 @@ exports.respondEmergencyAlert = function (req, res) {
                             return next(err);
                         } else {
                             res.json(emergencyAlert);
-                
+
                         }
                     });
                 }
             });
-		}
-	});
+        }
+    });
 
-    
+
 };
 

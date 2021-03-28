@@ -12,10 +12,13 @@ module.exports = function (app) {
         .get(emergencyAlerts.emergencyAlertsList);
 
     app.route('/emergencyAlertById/:alertId')
-        .get(emergencyAlerts.emergencyAlertById)
+        .get(emergencyAlerts.emergencyAlertById);
 
     app.route('/responseEmergencyAlert/:alertId')
-        .put(emergencyAlerts.respondEmergencyAlert)
+        .put(emergencyAlerts.respondEmergencyAlert);
 
-    
+    app.route('/unansweredAlerts')
+        .get(emergencyAlerts.unansweredAlerts);
+
+
 };
