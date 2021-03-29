@@ -63,6 +63,7 @@ module.exports = function () {
     require('../app/routes/users.server.routes.js')(app);
     require('../app/routes/vitalSigns.server.routes.js')(app);
     require('../app/routes/emergencyAlerts.server.routes.js')(app);
+    require('../app/routes/motivationalMessages.server.routes.js')(app);
     // require('../app/routes/courses.server.routes.js')(app);
     // require('../app/routes/students.server.routes.js')(app);
 
