@@ -8,6 +8,7 @@ module.exports = function (app) {
     app.route('/registerVitalSigns')
         .post(vitalSigns.create);
 
-    
+    app.route('/findDiagnostic')
+        .post(vitalSigns.ia);
 
 };
