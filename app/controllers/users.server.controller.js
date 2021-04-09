@@ -121,7 +121,8 @@ exports.authenticate = function (req, res, next) {
 				res.cookie('token', token, { 
 						maxAge: jwtExpirySeconds * 10000, 
 						httpOnly: true,
-						secure: process.env.NODE_ENV === 'production'? true: false
+						// secure: process.env.NODE_ENV === 'production'? true: false
+						domain: process.env.NODE_ENV === 'production'? 'https://datacris-emerging-mern-project.herokuapp.com': 'http://localhost:5000'
 					 });
 
 				res.status(200).json({
