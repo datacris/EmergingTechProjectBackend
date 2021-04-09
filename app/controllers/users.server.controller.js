@@ -118,7 +118,7 @@ exports.authenticate = function (req, res, next) {
 				console.log('token:', token)
 				// set the cookie as the token string, with a similar max age as the token
 				// here, the max age is in milliseconds
-				res.cookie('token', token, { maxAge: jwtExpirySeconds * 10000, httpOnly: true });
+				res.cookie('token', token, { maxAge: jwtExpirySeconds * 10000, httpOnly: false });
 
 				res.status(200).json({
 					status: "success",
